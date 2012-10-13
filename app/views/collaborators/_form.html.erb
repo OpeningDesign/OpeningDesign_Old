@@ -1,0 +1,21 @@
+<%= form_for(@collaborator, :url => node_collaborators_path(@node)) do |f| %>
+  <% if @collaborator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@collaborator.errors.count, "error") %> prohibited this collaborator from being saved:</h2>
+
+      <ul>
+      <% @collaborator.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= text_field_tag :name, nil, :placeholder => "Enter a name", :size => SimpleConfig.name_field_size %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<span class="properties">
+  <span class="properties_left">
+    <span class="owner">
+      <%= link_to_user sketchspace.owner, :pic => true, :name => false %>
+    </span>
+    <span class="icon">
+      <%= image_tag 'sketchspace.png' %>
+    </span>
+    <%= link_to sketchspace.display_name, sketchspace %>
+    <%= render :partial => '/nodes/show_tags', :locals => { :node => sketchspace } %>
+  </span>
+  <span class="after_tags">
+    <%# TODO: following is fake %>
+    <!-- <span class="num_views" title="# views (FAKE)">12</span> -->
+    <%= render :partial => 'nodes/votes', :locals => { :node => sketchspace } %>
+  </span>
+</span>

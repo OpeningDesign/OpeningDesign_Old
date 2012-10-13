@@ -1,0 +1,35 @@
+<%= render :partial => '/nodes/node_children_menu', :locals => { :node => document } %>
+
+<% button_menu :button_icon => 'chevron-right', :class => 'self' do |m| %>
+  <% unless current_page?(document) %>
+    <%= m.item 'Open', document_path(document), :icon => 'eye-open' %>
+  <% end %>
+  <% if document.writable_by?(current_user) %>
+    <%= m.item 'Move', node_move_path(document), :icon => 'move', :method => :post %>
+  <% end %>
+  <%= m.item 'Download', download_document_path(document), :icon => 'download' %>
+  <% if document.writable_by?(current_user) %>
+    <%= m.item 'Delete', document, :icon => 'trash', :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
+  <%= collaborators_menu_item(m, document) %>
+  <%= m.separator if m.num_items > 0 %>
+  <%= m.item 'Collaborators', node_collaborators_path(document), :icon => 'retweet' %>
+  <%= m.separator %>
+  <% if document.writable_by?(current_user) || document.collaborator?(current_user) %>
+    <li>
+      <a class="upload_version_from_menu<%= document.to_param %>" href="#">
+        <%= form_for document, :url => upload_node_url(document), :method => :post do |f| %>
+          <i class="icon-plus"></i>
+          <span class="styled-upload-menu-item">
+            <span class="fake">
+              <button><%= t('.upload_new_version', :default => 'Upload new version') %></button>
+            </span>
+            <input class="hidden-upload-input" id="upload" name="document_version[content][]" type="file">
+            <input type="hidden" name="new_version_only" value="1">
+          </span>
+        <% end %>
+      </a>
+    </li>
+  <% end %>
+  <div class = "bottom_of_UL"></div>
+<% end %>

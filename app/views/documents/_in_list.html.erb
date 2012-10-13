@@ -1,0 +1,34 @@
+<span class="properties">
+  <span class="properties_left">
+    <span class="owner">
+      <%= link_to_user document.owner, :pic => true, :name => false %>
+    </span>
+    <span class="icon">
+      <%= image_tag 'document.png' %>
+    </span>
+
+  <% if document.thumb_url %>
+    <%= image_tag document.thumb_url, :class => 'document_thumb' %>
+  <% end %>
+
+  <% if current_page?(document) %>
+    <%= document.display_name %>
+  <% elsif %>
+    <%= link_to document.name, document %>
+  <% end %>
+
+  <%= render :partial => 'nodes/show_tags', :locals => { :node => document } %>
+
+
+
+</span>
+  <span class="after_tags span4">
+    <span class="version" title="Version number of the document">
+      <%= document.version rescue -1 %> <%# TODO: 'rescue' here allows viewing old data, I guess %>
+    </span>
+    <span class="downloads" title="Document downloaded <%= pluralize document.downloads_count, 'time' %>">
+      <%= document.downloads_count %>
+    </span>
+    <%= display_updated_at document %>
+    <%= render :partial => 'nodes/votes', :locals => { :node => document } %>
+  </span>

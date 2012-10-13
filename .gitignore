@@ -1,0 +1,16 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+*.swp
+coverage
+coverage.data
+public/system
+public/img/Prep Files
+.project
+.localrc
+.zsh_config
+*.class
+*.pyc
+*.pyo

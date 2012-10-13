@@ -1,0 +1,9 @@
+<%= simple_form_for @collaborator_to_add,
+                    :url => node_collaborators_url(@node),
+                    :method => :post,
+                    :html => { :class => ''} do |f| %>
+  <%= f.input :name_or_email %>
+  <%# TODO: we probably want an icon with the button, may need simple_form wrappers for this,
+  see e.g. http://stackoverflow.com/questions/10730603/simple-form-how-to-wrap-a-link-with-a-twitter-bootstrap-icon %>
+  <%= f.button :submit, :class => "btn" %>
+<% end %>

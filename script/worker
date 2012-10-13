@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'daemons'
+
+pwd  = File.dirname(File.expand_path(__FILE__))
+file = pwd + '/../config/worker.rb'
+
+# TODO: Only works in production now, not in dev. Probably foreman works in dev?
+
+Daemons.run_proc(
+  'odr-worker', # name of daemon
+  :dir_mode => :normal,
+  :dir => File.join(pwd, '../tmp/pids'),
+  :backtrace => true,
+  :monitor => true,
+  :log_output => true
+) do
+  exec "cd #{pwd}/..; RAILS_ENV=production bundle exec stalk #{file}"
+end
+Daemons.run_proc(
+  'odr-clock',
+  :dir_mode => :normal,
+  :dir => File.join(pwd, '../tmp/pids'),
+  :backtrace => true,
+  :monitor => true,
+  :log_output => true
+) do
+  exec "cd #{pwd}/..; RAILS_ENV=production bundle exec clockwork clock.rb"
+end
+# vim:ft=ruby

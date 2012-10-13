@@ -1,0 +1,493 @@
+/*  
+
+Theme Name: Generate
+
+Version: 1.0
+
+Author: WooThemes
+
+Author URI: http://www.woothemes.com
+
+
+
+    Copyright: (c) 2009 WooThemes.
+
+
+
+*/
+
+
+
+/*-------------------------------------------------------------------------------------------
+
+
+
+INDEX:
+
+
+
+1. SETUP
+
+-1.1 Defaults
+
+-1.2 Hyperlinks
+
+
+
+2. SITE STRUCTURE & APPEARANCE
+
+-2.1 Containers & Columns
+
+-2.2 Navigation
+
+-2.2.1 Drop-down menus
+
+-2.3 Header
+
+-2.4 Content
+
+-2.5 Sidebar
+
+-2.6 Footer
+
+-2.7 Page Navigation
+
+-2.8 Notes
+
+-2.9 Disqus
+
+
+
+3. POSTS
+
+-3.1 Post Layout
+
+-3.2 Post Type
+
+-3.3 Post Typography
+
+
+
+-------------------------------------------------------------------------------------------/*
+
+
+
+
+
+/*-------------------------------------------------------------------------------------------*/
+
+/* 1. SETUP */
+
+/*-------------------------------------------------------------------------------------------*/
+
+
+
+/* 1.1 Defaults */
+
+
+
+body { background: #e6e6e6 url(images/headergradient-blog.png) repeat-x; font: 12px/18px Arial,Helvetica,Sans-serif; color: #555;  }
+
+
+
+h1, h2, h3, h4, h5, h6  { margin: 0; font-family:"Myriad Pro", Myriad, Arial, sans-serif; color: #333; font-weight:normal; }
+
+h1  {font-size: 28px; } h2 {font-size: 24px;} h3  {font-size: 18px;} h4  {font-size: 16px;} h5  {font-size: 14px;} h6  {font-size: 12px;}
+
+
+
+p {margin: 0; font:14px/20px "Myriad Pro", Myriad, Arial, sans-serif; }
+
+
+
+hr { background-color: #e6e6e6; border:0; height: 1px; margin-bottom: 20px; }
+
+
+
+input, textarea { padding: 7px 0 7px 7px; border-color: #ccc #efefef #efefef #ccc; border-width:1px; border-style:solid;}
+
+
+
+/* 1.2 Hyperlinks */
+
+
+
+a:link, a:visited  { color: #78ABDC; text-decoration:none;}
+
+a:hover { color:#96c300; }
+
+
+
+h1 a:link, h1 a:visited, h2 a:link, h2 a:visited, h3 a:link, h3 a:visited,
+
+h4 a:link, h4 a:visited, h5 a:link, h5 a:visited, h6 a:link, h6 a:visited  { text-decoration: none; }
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover  { text-decoration: underline; }
+
+
+
+/*-------------------------------------------------------------------------------------------*/
+
+/* 2. SITE STRUCTURE & APPEARANCE */
+
+/*-------------------------------------------------------------------------------------------*/
+
+
+
+/* 2.1 Containers & Columns */
+
+#wrapper { background:url(http://static.tumblr.com/j8lh0bq/7vWkzgvez/bg-gradient.png) no-repeat top center; }
+
+.content { width:870px; margin:0 auto; }
+
+#content { margin-top:40px; }
+
+#main { width:580px; }
+
+
+
+/* 2.3 Header */
+
+#header{  padding:30px 0;height:40px;clear:both;position:relative; }
+
+
+
+#logo .site-title { font-family:"Myriad Pro", Myriad, Helvetica, Arial, serif; text-shadow:1px 1px 2px #000;}
+
+#logo .site-title a { color:#fff; font-size:48px; line-height:40px; text-transform:none; font-weight:bold; text-decoration:none; letter-spacing:-3px;}
+
+#logo .site-title a:hover { text-decoration:underline; }
+
+#logo .site-title a img { max-height:40px; max-width:400px;}
+
+
+
+#header #search { position:relative; background: rgb(50,50,50); background: rgba(0,0,0,.1);padding:4px; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;}
+
+#header #search .searchform { background:#6c6c6c; width:200px; padding:8px 10px; border:1px solid #000;  border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+
+#header #search input.s { background:none; padding:0; border:0; font-family:"Myriad Pro", Myriad, Helvetica, Arial, serif; color:#cccccc; text-shadow:1px 1px 0 #333;}
+
+#header #search input.submit { position:absolute; top:11px; right:15px; border:0; padding:0; opacity:0.7;}
+
+#header #search input.submit:hover { opacity:1; }
+
+
+
+#header #icons { padding-top:10px; margin-right:10px;}
+
+#header #icons a { margin-right:15px; opacity:0.7;}
+
+#header #icons a:hover { opacity:1; }
+
+
+
+/* 2.4 Content */
+
+#content{padding:0 0 40px; position:relative;}
+
+
+
+/* 2.5 Sidebar */
+
+#sidebar{ width:260px; overflow:hidden;}
+
+#sidebar .widget { margin: 0 0 30px; background:#fff; border:1px solid #c5c5c5; position:relative; box-shadow: 0 1px 5px rgba(0,0,0,0.1);-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);-moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1); }
+
+#sidebar .widget .title { background:#e6e6e6 url(http://static.tumblr.com/j8lh0bq/Hu6kzgvfj/bg-post.png) repeat-x top; border-top:1px solid #fff;  border-bottom:1px solid #c5c5c5; padding: 10px 15px; font-size:14px; font-weight:bold; text-shadow:1px 1px 0 #fff; color:#555; }
+
+#sidebar .widget .title a:link, #sidebar .widget .title a:visited {color:#555;}
+
+#sidebar .widget .widget-content { padding:20px; }
+
+#sidebar .widget .widget-about { font:14px/20px "Myriad Pro", Myriad, Arial, sans-serif; }
+
+#sidebar .widget ul li { padding:3px 0 3px 15px; background:url(http://static.tumblr.com/j8lh0bq/Sxfkzgvig/ico-bullet.png) no-repeat left; }
+
+#sidebar .gravatar { float:left; margin:5px 10px 5px 0; padding:3px; border:1px solid #c6c6c6; background:#fafafa; max-width:60px;height:auto !important; }
+
+#sidebar .action-buttons { margin-bottom:30px; }
+
+#sidebar .action-buttons a img { width: 259px; height: 50px; }
+
+#sidebar .follow { margin-bottom:10px; }
+
+
+
+#sidebar #likes, #sidebar #tweets, #sidebar #likes p { list-style-type: none; margin: 0; padding: 0; font: 12px/18px Arial, Helvetica, sans-serif; }
+
+#sidebar #likes li.like_post, #sidebar #tweets li { width:218px;padding:0 0 10px 0;margin:0 0 12px 0;border-bottom:1px solid#e4e4e4;background:none; }
+
+#sidebar #likes li.like_post:last-child, #sidebar #tweets li:last-child { padding:0;margin:0;border-bottom:none; }
+
+#sidebar #likes img { max-width: 206px;height: auto !important; margin-bottom: 10px; padding: 5px; border: 1px solid #dbdbdb; background:#e9e9e9; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;}
+
+
+
+#sidebar #twitter .tweet-link { display: block; font-size: 11px; }
+
+
+
+#sidebar #flickr li {float: left; padding:0; margin: 5px 0 5px 15px; background:none; }
+
+#sidebar #flickr img { border:1px solid #c6c6c6; padding:3px; background-color:#fff; }
+
+
+
+/* 2.6 Footer */
+
+#footer{ background:#333333; padding: 20px 0; color:#999; }
+
+#footer p { font-style:italic;}
+
+#footer #credit img{vertical-align:middle;}
+
+#footer #credit span{padding:0 5px; font-size:12px; font-style:normal;}
+
+
+
+/* 2.7 Page Navigation */
+
+#page-nav-wrap { border-top:1px solid #c6c6c6; border-bottom:1px solid #fff; margin-bottom:30px; }
+
+#page-nav { border-bottom:1px solid #c6c6c6; border-top:1px solid #fff; padding:15px 10px;}
+
+#page-nav a { font:14px/1em Helvetica, Arial, sans-serif; color:#777; text-shadow:1px 1px 0 #fff; }
+
+#page-nav a img { vertical-align:middle; opacity:0.8; padding:0 5px;}
+
+#page-nav a:hover img { opacity:1; }
+
+
+
+/* 2.8 Notes */
+
+#notes {margin: 0 0 40px}
+
+ol.notes { background:#e9e9e9; border:1px solid #c8c8c8; padding:20px 30px; }
+
+ol.notes li { background:url(http://static.tumblr.com/j8lh0bq/kjmkzgveg/bevel.png) repeat-x bottom; padding:10px 0; font: 14px "Myriad Pro", Myriad, Helvetica, Arial, serif; }
+
+ol.notes li:last-child { background:none !important; }
+
+ol.notes li img{ vertical-align:middle; padding-right:8px; }
+
+ol.notes li blockquote{ margin:10px 0 5px 45px; border-left:4px solid #ccc; padding:0 0 0 10px;}
+
+
+
+/* 2.9 Disqus */
+
+#disqus_thread { background:#e9e9e9; border:1px solid #c8c8c8; padding:20px 30px; margin: 0 0 40px !important;}
+
+
+
+/*-------------------------------------------------------------------------------------------*/
+
+/* 3. POSTS */
+
+/*-------------------------------------------------------------------------------------------*/
+
+
+
+/* 3.1 Post layout */
+
+
+
+.post  { margin: 0 0 40px; background:#fff; border:1px solid #c5c5c5; position:relative;box-shadow: 0 1px 5px rgba(0,0,0,0.1);-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);-moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1);}
+
+.post .postcontent { position:relative; background:url(http://static.tumblr.com/j8lh0bq/Hu6kzgvfj/bg-post.png) repeat-x top; border-top:1px solid #fff; border-bottom:1px solid #c5c5c5;padding:30px 30px 10px;}
+
+.post .posttitle { padding: 0; margin-bottom: 20px; font-size: 24px; }
+
+
+
+.post .postbottom { background:#e6e6e6 url(http://static.tumblr.com/j8lh0bq/Hu6kzgvfj/bg-post.png) repeat-x top; padding:15px; border-top:1px solid #fff;}
+
+.post .postbottom a { text-transform:lowercase; font-size:14px; color:#777; text-shadow:1px 1px 0px #fff; padding:0 10px; line-height:24px; }
+
+.post .postbottom img{ opacity:0.8;}
+
+.post .postbottom a:hover img{ text-decoration:none; opacity:1;}
+
+.post .postbottom .fl img { float:left; margin-right:7px; }
+
+.post .postbottom .fr img { float:right; margin-left:10px; }
+
+
+
+.post .posttype { background:#b7d35f url(http://static.tumblr.com/j8lh0bq/KUrkzgvf8/bg-post-type.png) no-repeat; border:1px solid #9fb753; border-right:0; height: 39px; width:51px; position:absolute; left:-53px; top:20px; }
+
+.post .posttype img { padding:7px 14px; }
+
+.post .posttype img:hover { opacity:0.8; cursor:pointer;}
+
+
+
+.post .tags {background:url(http://static.tumblr.com/j8lh0bq/bgakzgvlx/ico-tag.png) no-repeat center left;padding-left:25px;clear:both;}
+
+.post .tags .the-tag { display: inline; margin-right: 5px;}
+
+.post .tags .the-tag:after { content: ","; }
+
+.post .tags .the-tag:last-child:after { content: ""; content:none; }
+
+
+
+/* 3.2 Post type */
+
+
+
+.quote .postcontent .quote-wrap { font:italic 30px/1.2em "Myriad Pro", Myriad, Helvetica, Arial, sans-serif; letter-spacing:-1px; }
+
+
+
+.photo .postcontent .img-wrap, .photo .postcontent .video-wrap, .video .postcontent .video-wrap, .quote .postcontent .quote-wrap { margin-bottom:20px; }
+
+
+
+.link .postcontent .postlink a { font-size:24px; width:90%; display:block;}
+
+.link .postcontent .postlink span { background:url(http://static.tumblr.com/j8lh0bq/GPEkzgvgh/btn-postlink.png) no-repeat; height:31px; width:30px; display:block; position:absolute; top:25px; right:30px;opacity:0.8; }
+
+.link .postcontent .postlink a:hover span{ opacity:1; }
+
+
+
+.chat ul.chat { font:14px/1em "Myriad Pro", Myriad, Helvetica, Arial, sans-serif; background:#e6e6e6; border:1px solid #d4d4d4; border-width:1px 1px 0; list-style-type:none; padding:0; }
+
+.chat ul.chat li { background: url(http://static.tumblr.com/j8lh0bq/Hu6kzgvfj/bg-post.png) repeat-x scroll center top; list-style-type:none; padding:8px 10px; border-bottom:1px solid #d4d4d4; border-top:1px solid #fff;}
+
+.chat ul.chat li .name { font-weight:bold; float:left; margin-right:10px; text-align:right; width:80px; }
+
+.chat ul.chat li .message  { display: block; padding-left: 90px; }
+
+
+
+.audio .postcontent .audio-wrap {margin: 0 15px 20px 0; float: left;}
+
+.audio .postcontent .audio-wrap img {max-width: 100px;height: auto !important;}
+
+.audio .postcontent .audio-player {display:inline-block; padding: 4px; border: 1px solid #dbdbdb; margin-bottom:15px; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
+
+
+
+.post .postcontent img, .post .postcontent .video-wrap { padding: 8px; border: 1px solid #dbdbdb; background:#e9e9e9; border-radius:6px; -moz-border-radius:6px; -webkit-border-radius:6px;}
+
+
+
+.answer .postcontent .answer-wrap { font:normal 18px/24px "Myriad Pro", Myriad, Helvetica, Arial, sans-serif; margin-bottom: 15px; }
+
+.answer .postcontent .asker-wrap { font:14px/1em "Myriad Pro", Myriad, Arial, sans-serif; margin-bottom: 15px;padding-bottom: 15px; border-bottom: 1px solid #e9e9e9;}
+
+.answer .postcontent .asker-wrap img { background-color: #fff; vertical-align: middle; padding:3px; border:1px solid #c6c6c6; margin: 0 9px 0 0; border-radius:0; -moz-border-radius:0; -webkit-border-radius:0;}
+
+
+
+/* 3.3 Post Typography */
+
+
+
+.post .title { font:normal bold 24px/24px "Myriad Pro", Myriad, Helvetica, Arial, sans-serif;position:relative; margin: 0 0 15px; }
+
+.page .title { margin: 0 0 20px 0; }
+
+
+
+.post h1 { border-bottom:1px solid #e6e6e6; margin-bottom:20px; padding-bottom: 20px; }  
+
+.post h2 { padding-bottom:20px; }  
+
+.post h3 { padding-bottom:10px; }  
+
+
+
+.post p, .post .description, .post .tags { margin: 0 0 20px 0; font:14px/20px "Myriad Pro", Myriad, Arial, sans-serif; }
+
+.post p:last-child, .post ul:last-child, .post ol:last-child, .post blockquote:last-child { margin-bottom: 0 !important; }
+
+.post .description blockquote p, .post .description blockquote blockquote { margin: 10px 0; }
+
+
+
+.post blockquote  { font:italic 14px Georgia, "Times New Roman", Times, serif; padding: 0 0 0px 20px; color: #444; border-left:4px solid #ddd; margin:0 0 20px; }
+
+.post blockquote p  { font-style:italic; }
+
+
+
+.post ul  { margin: 0 0 15px 0; padding: 0 0 0 30px; }
+
+.post ul ul  { margin: 0; }
+
+.post ul li  {  list-style-type: disc; }
+
+.post ul ul li  { list-style-type: circle; }
+
+
+
+.post ol  { margin: 0 0 15px 0; padding: 0 0 0 30px; }
+
+.post ol ol  { margin: 0; }
+
+.post ol li  { list-style-type: upper-latin; }
+
+.post ol li ol li  { list-style-type: lower-latin; }
+
+
+
+.alignleft  { float: left; width: auto; margin: 5px 15px 5px 0; }
+
+.alignright  { float: right; width: auto; margin: 5px 0 5px 15px; }
+
+.aligncenter  { text-align: center; margin-bottom:15px;}
+
+img.aligncenter  { margin-left:auto; margin-right:auto; display:block; }
+
+body {
+	background-color: #FFFFFF;
+}
+.post {
+background-image: url(images/angledgradient.png);
+background-repeat: no-repeat;
+background-position: left top;
+border-top: 0px solid white;
+}
+#tag_cloud #tag_list a {
+color:#9cbadd;
+}
+#tag_cloud #tag_list a:hover {
+color:#96c300;
+}
+#credit {
+display:none;
+}
+#sidebar .widget .title {
+background: none;
+border-top: 0px solid white;
+border-bottom: 0px solid #C5C5C5;
+padding: 10px 15px;
+font-size: 14px;
+font-weight: bold;
+text-shadow: 0px 0px 0 white;
+color: #C1CEDD;
+}
+#sidebar .widget {
+background-image: url(images/angledgradient.png);
+background-repeat: no-repeat;
+background-position: left top;
+margin: 0 0 30px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #CCCCCC;
+	border-left-color: #CCCCCC;
+	border-right-style: none;
+	border-bottom-style: none;
+position: relative;
+box-shadow: none;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+}
+

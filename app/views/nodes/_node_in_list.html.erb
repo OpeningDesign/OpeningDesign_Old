@@ -1,0 +1,13 @@
+<%= render :partial => "/nodes/dnd_upload", :locals => { :node => node_in_list } %>
+
+<% unless node_in_list.is_open_source %>
+  <i class="icon-lock"></i>
+<% end %>
+
+<%= render :partial => "#{node_in_list.class.name.pluralize.underscore}/in_list",
+  :object => node_in_list,
+  :as => node_in_list.class.name.underscore.downcase %>
+
+<% if moving_node? && move_target?(node_in_list, current_user) %>
+  <%= link_to I18n.t(".move_here", :default => "Move here"), node_submitmove_path(node_in_list), :method => :post, :class => 'btn btn-primary' %>
+<% end %>

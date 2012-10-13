@@ -1,0 +1,54 @@
+<div class="span4">
+  <dl>
+    <dt>Description</dt>
+    <dd><%= @project.description %></dd>
+    <dt>Creator</dt>
+    <dd><%= link_to_user @project.owner %></dd>
+    <dt>Collaborators</dt>
+    <dd>
+    <% @project.transitive_collaborators.collect {|c| c.user }.sort {|a,b| a.name <=> b.name }.each do |u| %>
+      <%= link_to_user u %>
+    <% end %>
+    </dd>
+    <dt>Tags</dt>
+    <dd class="span4"><%= render :partial => '/nodes/tagging', :locals => { :node => @project } %></dd>
+  </dl>
+</div>
+<div class="span7 image_viewer">
+  <% if @project.node_images_dirty %>
+    <p><%= t '.images_are_dirty', :default => "Preview images are being updated... please be a bit patient and refresh in some moments..." %></p>
+  <% end %>
+  <% if @project.node_images.count > 1 %>
+    <div id="nodeImagesCarousel" class="thumbnail carousel slide">
+      <div class="carousel-inner">
+        <% @project.node_images.each do |ni| %>
+          <div class="item <%= @project.node_images.first == ni ? 'active' : '' %>">
+            <div class="img">
+              <%# TODO: setting image width explicitly, necessary? width of container 0px otherwise... WTF? %>
+              <%= image_tag ni.media.url(:original), :style => 'width: 601px;' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <a class="carousel-control left" href="#nodeImagesCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#nodeImagesCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+    <script>
+      $(document).ready(function() {
+          $('#nodeImagesCarousel').carousel({
+            });
+      });
+    </script>
+  <% elsif @project.primary_image_url %>
+    <div class="thumbnail">
+      <img src="<%= @project.primary_image_url %>" alt="project image">
+    </div>
+  <% else %>
+  <br> <br> <br> <br> <br> <br>
+    				<blockquote>
+					<p>
+						Upload an image inside this 'space' and it will appear in the image viewer here.
+					</p>
+				</blockquote>
+  <% end %>
+</div>

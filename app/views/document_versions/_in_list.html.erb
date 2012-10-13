@@ -1,0 +1,29 @@
+<span class="properties">
+  <span class="properties_left">
+    <span class="owner">
+      <%= link_to_user document_version.owner, :pic => true, :name => false %>
+    </span>
+    <% if document_version.type == 'DocumentVersion' %>
+      <span>
+        V<%= document_version.version %>
+      </span>
+    <% end %>
+    <span class="icon">
+      <%= image_tag 'document_version.png' %>
+    </span>
+    <span class="name">
+      <%= link_to document_version.display_name, document_version %>
+    </span>
+    <%= render :partial => 'nodes/show_tags', :locals => { :node => document_version } %>
+  </span>
+
+
+
+</span>
+  <span class="after_tags span4">
+    <span class="size" title="Size of the document">
+      <%= number_to_human_size(document_version.content.size) %>
+    </span>
+    <%= display_updated_at document_version %>
+    <%= render :partial => 'nodes/votes', :locals => { :node => document_version } %>
+  </span>

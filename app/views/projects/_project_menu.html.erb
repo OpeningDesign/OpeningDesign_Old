@@ -1,0 +1,18 @@
+<%= render :partial => '/nodes/node_children_menu', :locals => { :node => project } %>
+
+<% button_menu :button_icon => 'chevron-right', :class => 'self' do |m| %>
+  <% unless current_page?(project) %>
+    <%= m.item 'Open', project_path(project), :icon => 'eye-open' %>
+  <% end %>
+  <%= m.item 'Bulk download', project_download_path(project), :icon => 'download' %>
+  <%= m.separator %>
+  <% if project.writable_by?(current_user) %>
+    <%= m.item 'Edit', edit_project_path(project), :icon => 'edit' %>
+    <%= m.item 'Move', node_move_path(project), :icon => 'move', :method => :post %>
+    <%= m.item 'Delete', project, :icon => 'trash', :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
+  <%= collaborators_menu_item(m, project ) %>
+  <%= m.separator if m.num_items > 0 %>
+  <%= m.item 'Collaborators', node_collaborators_path(project), :icon => 'retweet' %>
+  <div class = "bottom_of_UL"></div>
+<% end %>

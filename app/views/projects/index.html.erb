@@ -1,0 +1,11 @@
+<div class = "corner_gradient">
+<h1>All projects</h1>
+
+<ul class="projects">
+  <li>
+    <%= render :partial => 'project_in_list', :collection => @projects, :spacer_template => '/ul_list_spacer' %>
+  </li>
+</ul>
+
+<%= link_to 'New Project', new_project_path %>
+</div>

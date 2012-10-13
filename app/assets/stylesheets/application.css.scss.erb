@@ -1,0 +1,161 @@
+
+.container {
+  padding-bottom: 140px;
+}
+
+// header and logo
+
+.load-indicator {
+  position: absolute;
+  top: 0px;
+  width: 200px;
+  text-align: center;
+  left: 50%;
+  margin-left: -100px;
+  background-color: yellow;
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+// pic and text (of an activity)
+
+.node_in_list {
+  position:relative;
+  display: inline-block;
+  //width: 100%;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #EFEFEF;
+}
+
+// drag/drop / upload/download stuff
+.drag-instruction-container {
+  position: relative;
+  .drag-instruction {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    margin: 6px;
+    background-color: yellow;
+    &.hide {
+      display: none;
+    }
+  }
+}
+.styled-upload-menu-item {
+  position: relative;
+  .hidden-upload-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    -moz-opacity: 0;
+    //filter:alpha(opacity:0);
+    z-index: 2;
+  }
+}
+
+// lists of children
+.children > ul {
+  list-style-type: none;
+  > li {
+    margin-top: 6px;
+    div {
+      vertical-align: middle;
+    }
+  }
+}
+
+// counter (charCount plugin)
+
+form .counter {
+  font-size: 45px;
+  color: #EEE;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+  float: right;
+  top: -9px;
+left: 7px;
+
+  &.warning {
+    color: #EEE;
+  }
+  &.exceeded {
+    color: #b5d166;
+  }
+}
+
+// inline edit
+.inline_editable {
+  position: relative;
+  &:hover {
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0;
+      background: transparent url(<%= asset_data_uri 'pencil.png' %>) no-repeat right top;
+      z-index: 10;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// tooltip
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	background-color: #eee;
+	padding: 5px;
+	opacity: 0.85;
+}
+#tooltip h3, #tooltip div { margin: 0; }
+
+// sketchspace iframe
+
+.iframe_container {
+  iframe {
+    position: absolute;
+    border: 0px;
+    bottom: 0px;
+    width: 100%;
+    left: 0;
+    z-index: 10000;
+  }
+}
+
+.sketchspace div div.properties .icon {
+  background: url(<%= asset_data_uri 'sketchspace.png' %>) no-repeat;
+  width: 29px;
+  height: 29px;
+  display: inline-block;
+}
+
+// autocomplete / typeahead: attempt to show many, plus an overflow scroll bar
+.typeahead.dropdown-menu {
+  max-height: 200px;
+  overflow: scroll;
+}
+
+// new drag-n-drop upload instructions
+.drop_instruction_container {
+  position: absolute;
+  height: 100%;
+  .drop_instruction {
+    top: 0;
+    left: 0;
+    position: relative;
+    border: 1px solid gray;
+    background-color: #ccc;
+  }
+}
+
+// unsupported page
+.unsupported .logo {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+}

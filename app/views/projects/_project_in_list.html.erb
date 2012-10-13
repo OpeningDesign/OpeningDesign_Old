@@ -1,0 +1,16 @@
+<div class="project">
+
+  <span class="owner">
+    <%= link_to_user project_in_list.owner, :name => false, :pic => true %>
+  </span>
+  <span class="name">
+    <%= render project_in_list %>
+  </span>
+  <span class="description">
+    <%= project_in_list.description.truncate(30) rescue "(no description)" %>
+  </span>
+  <span class="updated_at">
+    (<%= l project_in_list.updated_at, :format => :short %>)
+  </span>
+
+</div>

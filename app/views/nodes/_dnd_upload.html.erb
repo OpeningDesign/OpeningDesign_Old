@@ -1,0 +1,17 @@
+<div class="upload<%= node.to_param %>" style="display: none;">
+  <%= form_for node, :url => upload_node_url(node), :method => :post do |f| %>
+    <input multiple="multiple" name="document_version[content][]" type="file">
+    <%= f.submit %>
+  <% end %>
+</div>
+<span class="drop_instruction_container">
+  <div id="dropupload<%= node.to_param %>" class="drop_instruction" style="display: none;">
+    <p>Drop here if you want to upload file(s) for <%= node.display_name %>.</p>
+  </div>
+</span>
+<script>
+  $().ready(function() {
+      App.fileUploadController.forNode("<%= node.to_param %>");
+});
+</script>
+

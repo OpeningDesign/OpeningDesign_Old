@@ -1,0 +1,35 @@
+<div class="modal hide" id="uploadStatus">
+  <div class="modal-header">
+    <h3>Uploading...</h3>
+  </div>
+  <div class="modal-body">
+
+    {{#if files.uploading}}
+
+      <div class="progress progress-striped active">
+        <div class="bar" {{bindAttr style="files.progressBarWidth"}} ></div>
+      </div>
+
+      <p>Uploading
+        {{#each files}}
+          {{ name }}
+        {{/each}}
+      </p>
+    {{else}}
+      <p>Done</p>
+    {{/if}}
+    {{#if files.hasError}}
+      <div class="alert">
+        {{ files.errorMsg }}
+      </div>
+    {{/if}}
+  </div>
+  <div class="modal-footer">
+    {{#if files.uploading}}
+    <a href="#" class="btn btn-danger" onclick="location.reload()">Abort</a>
+    {{else}}
+    <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="location.reload()">Close</a>
+    {{/if}}
+  </div>
+</div>
+<!-- vim:ft=html -->

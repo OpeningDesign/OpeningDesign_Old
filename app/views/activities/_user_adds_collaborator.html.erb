@@ -1,0 +1,18 @@
+<%= subject_of_activity(social_activity) %>
+added
+<%= render social_activity.target rescue "??" %>
+<% node = Node.find(social_activity.options['node']) rescue nil %>
+as collaborator
+to
+<% if node %>
+  <%= link_to node.display_name, node_url(node) %>
+  <% if node.root != node %>
+    in
+    <%= render node.root rescue "??" %>
+  <% end %>
+<% else %>
+  a node that does not exist any more.
+<% end %>
+(<%= time_ago_in_words social_activity.created_at %> ago)
+
+

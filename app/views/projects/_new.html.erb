@@ -1,0 +1,6 @@
+<h2>New <%= @project.parent ? t("sub_project") : t("project") %></h2>
+
+<%= render :partial => 'remote_form' %>
+
+<%= link_to t('subscription.show', :default => 'Show/upgrade subscription'), subscription_show_path %>
+

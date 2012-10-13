@@ -1,0 +1,6 @@
+<h1><%= t 'user_registration.twitter.headline', :default => "User Registration Twitter" %></h1>
+<p><%= t 'user_registration.twitter.blurb', :default => 'Thanks for signing up! We need to send you old-fashioned emails (which you can always unsubscribe from). Therefore, please fill in your email address below.' %></p>
+<%= simple_form_for(@user, :url => twitter_registration_url, :method => :post, :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.input :email %>
+  <%= f.button :submit %>
+<% end %>

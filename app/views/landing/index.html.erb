@@ -1,0 +1,35 @@
+
+<div class = "corner_gradient span7">
+	<h1>Activity Stream</h1>
+<dl class="dl">
+  <% @social_activities.each do |activity| %>
+    <dd>
+    <%= render activity %>
+    </dd>
+  <% end %>
+</dl>
+</div>
+
+
+<div >
+
+  <dl class="dl corner_gradient span3">
+  	  <h2><%= t '.popular_projects', :default => 'Most popular projects' %></h2>
+    <% @popular_projects.each do |project| %>
+      <dd>
+      <%= render project %>
+      <% if operator? && current_user.email == 'christian.oloff@web.de' %>
+        (popularity score: <%= project.popularity_score %>)
+      <% end %>
+      </dd>
+    <% end %>
+  </dl>
+<div class = "corner_gradient span3">
+  <h2>Tag cloud</h2>
+  <div class="tag_cloud">
+    <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, { :controller => :tags, :action => :show, :id => tag.name }, :class => css_class %>
+    <% end %>
+  </div>
+</div>
+

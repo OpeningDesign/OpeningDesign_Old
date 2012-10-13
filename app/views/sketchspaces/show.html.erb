@@ -1,0 +1,20 @@
+<%= render :partial => '/nodes/breadcrumbs', :locals => { :node => @sketchspace } %>
+
+<div class="row">
+  <div class="span12">
+
+    <%# render :partial => '/nodes/node', :locals => { :node => @sketchspace, :root => @sketchspace } %>
+    <%# render :partial => '/nodes/tagging', :locals => { :node => @sketchspace } %>
+
+    <% if current_user %>
+    <div class="iframe_container">
+      <iframe style="width: 100%;" src="<%= @sketchspace_url %>"> </iframe>
+    </div>
+  <% else %>
+    <p>You need to be
+      <%= link_to 'signed in', new_user_session_path %>
+      to view this <%= t 'sketchspace' %>.
+    </p>
+  <% end %>
+  </div>
+</div>

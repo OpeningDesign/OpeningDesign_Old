@@ -1,0 +1,8 @@
+<div class = "span4 corner_gradient">
+<h1>Editing <%= @project.parent ? t("sub_project") : t("project") %></h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @project %> |
+<%= link_to 'Back', projects_path %>
+</div>

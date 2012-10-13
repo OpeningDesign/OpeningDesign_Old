@@ -1,0 +1,16 @@
+<%= render :partial => '/nodes/node_children_menu', :locals => { :node => sketchspace } %>
+
+<% button_menu :button_icon => 'chevron-right', :class => 'self' do |m| %>
+  <% unless current_page?(sketchspace) %>
+    <%= m.item 'Open', sketchspace, :icon => 'eye-open' %>
+  <% end %>
+  <% if sketchspace.writable_by?(current_user) %>
+    <%= m.item 'Edit', edit_sketchspace_path(sketchspace), :icon => 'edit' %>
+    <%= m.item 'Move', node_move_path(sketchspace), :icon => 'move', :method => :post %>
+    <%= m.item 'Delete', sketchspace, :icon => 'trash', :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
+  <%= collaborators_menu_item(m, sketchspace ) %>
+  <%= m.separator if m.num_items > 0 %>
+  <%= m.item 'Collaborators', node_collaborators_path(sketchspace), :icon => 'retweet' %>
+  <div class = "bottom_of_UL"></div>
+<% end %>

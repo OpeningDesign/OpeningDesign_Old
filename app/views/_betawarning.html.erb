@@ -1,0 +1,33 @@
+<% if @display_beta_warning %>
+  <div class="modal hide fade" id="betaWarningModal">
+    <div class="modal-header">
+      <h3><%= t 'betawarning.header', :default => 'This is Beta' %></h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="span2">
+          <%= image_tag "od_icon_logo_2.jpg" %>
+        </div>
+        <div class="span3 alert">
+          <p class="lead">
+            <strong>
+              <%= t 'betawarning.strong',
+                :default => "Warning: This site is still under construction." %>
+            </strong>
+          </p>
+          <p><%= t 'betawarning.please', :default => "Please play around, but things will break.  Our official launch will be in August.  Thanks for visiting!" %></p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn primary" data-dismiss="modal">
+        <%= t 'betawarning.ok', :default => "Ok, understood" %>
+      </a>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $('#betaWarningModal').modal({backdrop: true});
+    });
+  </script>
+<% end %>

@@ -1,0 +1,7 @@
+<%= simple_form_for(@collaboration_request, :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.hidden_field :node_id, :value => @node.to_param %>
+  <%= f.input :message,
+    :placeholder => t('.message.placeholder', :default => 'Send an optional message with the request'),
+    :input_html => { :class => 'span6', :rows => 5 } %>
+  <%= f.button :submit %>
+<% end %>

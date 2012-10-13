@@ -1,0 +1,6 @@
+<%= subject_of_activity(social_activity) %>
+tagged
+<%= render social_activity.target rescue '??' %>
+with
+<%= link_to social_activity.options['tag'], tag_url(:id => social_activity.options['tag']) %>.
+(<%= time_ago_in_words social_activity.created_at %> ago)

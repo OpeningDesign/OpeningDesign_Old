@@ -1,0 +1,24 @@
+
+<div class = "span6 corner_gradient">
+<h2>
+  Tag: <%= @tagname %>
+  <% if @can_subscribe %>
+    <%= link_to_with_icon t(".subscribe", :default => "Subscribe"), tag_subscribe_path(@tag), :method => 'post', :icon => 'bullhorn', :class => 'btn btn-primary' %>
+  <% end %>
+  <% if @can_unsubscribe %>
+    <%= link_to_with_icon t(".unsubscribe", :default => "Unsubscribe"), tag_unsubscribe_path(@tag), :method => 'post', :icon => 'bullhorn', :class => 'btn btn-primary' %>
+  <% end %>
+</h2>
+
+</h2>
+
+<ul class="unstyled">
+  <% @nodes.each do |node| %>
+    <li>
+    <%= render node %>
+    <%= render :partial => '/nodes/show_tags', :locals => { :node => node } %>
+    </li>
+  <% end %>
+</ul>
+
+</div>

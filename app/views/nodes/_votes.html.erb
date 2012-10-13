@@ -1,0 +1,20 @@
+<span class="votes">
+  <% if node.collaborator?(current_user) && node.owner != current_user %>
+    <%= link_to node_votes_path(node) do %>
+      <i class="icon-thumbs-up"></i>
+      <% if node.vote_count > 0 %>
+        <%= node.vote_average %>°/<%= node.vote_count %>
+      <% else %>
+        ---°
+      <% end %>
+    <% end %>
+  <% else %>
+    <%# TODO: Horrible duplication from above, not DRY, should be in a helper? %>
+    <i class="icon-thumbs-up"></i>
+    <% if node.vote_count > 0 %>
+      <%= node.vote_average %>°/<%= node.vote_count %>
+    <% else %>
+      ---°
+    <% end %>
+  <% end %>
+</span>

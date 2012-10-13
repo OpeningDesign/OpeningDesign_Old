@@ -1,0 +1,24 @@
+<span class="properties">
+  <span class="properties_left">
+    <span class="owner">
+      <%= link_to_user project.owner, :pic => true, :name => false %>
+    </span>
+    <span class="icon">
+      <%= image_tag 'project.png' %>
+    </span>
+
+    <% if project.thumb_url %>
+      <%= image_tag project.thumb_url %>
+    <% end %>
+
+    <span class="name">
+      <%# TODO: we had this inline-editable before... not clear yet how to do properly %>
+      <%= link_to_unless_current project.display_name, project %>
+    </span>
+    <%= render :partial => 'nodes/show_tags', :locals => { :node => project } %>
+  </span>
+  <span class="after_tags">
+    <%= display_updated_at project %>
+    <%= render :partial => 'nodes/votes', :locals => { :node => project } %>
+  </span>
+</span>

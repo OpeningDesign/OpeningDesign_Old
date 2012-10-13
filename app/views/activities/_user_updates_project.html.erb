@@ -1,0 +1,4 @@
+<%= subject_of_activity(social_activity) %>
+updated
+<%= render social_activity.target rescue "??" %>
+(<%= time_ago_in_words social_activity.created_at %> ago)

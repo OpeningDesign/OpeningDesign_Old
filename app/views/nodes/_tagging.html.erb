@@ -1,0 +1,9 @@
+<script type="text/x-handlebars">
+  {{ view App.NodeTaggingView tagsBinding="App.tagsOfNode<%= node.to_param %>Controller" makeEditable="true" }}
+</script>
+<script>
+  $().ready(function() {
+    App.tagsOfNode<%= node.to_param %>Controller = App.createTagsOfNodeController("<%= node.to_param %>");
+  });
+</script>
+

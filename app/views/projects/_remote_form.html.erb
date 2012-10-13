@@ -1,0 +1,25 @@
+<%= form_for(@project, :remote => true ) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :class => "required", :minlength => 6, :size => SimpleConfig.name_field_size %>
+    <div class="validation_feedback"></div>
+  </div>
+  <div class="field description">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 4, :class => "required" %>
+    <div class="validation_feedback"></div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <script>
+    $("#project_description").charCount({
+      validationSelector: 'div.description .validation_feedback'
+    });
+    $(".edit_project,.new_project").validate({
+      errorPlacement: function(error, element) {
+        element.parent().children('.validation_feedback').append(error);
+      }
+    });
+  </script>
+<% end %>

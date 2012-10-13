@@ -1,0 +1,12 @@
+<script type="text/x-handlebars" data-tag-name="span">
+  {{ view App.NodeTaggingView tagsBinding="App.tagsOfNode<%= node.to_param %>Controller"}}
+</script>
+<script>
+  App.tagsOfNode<%= node.to_param %>Controller = App.createTagsOfNodeController("<%= node.to_param %>");
+  <% if node.tags.count > 0 %>
+    <%# TODO: bad trick (again?): The template isn't rendered yet (?) or something of emberjs isn't initialized yet, if we execute initializeContent() immediately. %>
+    setTimeout(function() {
+      App.tagsOfNode<%= node.to_param %>Controller.initializeContent(<%= array_or_string_for_javascript(node.tags.collect {|t| t.name }) %>);
+    }, 1000);
+  <% end %>
+</script>

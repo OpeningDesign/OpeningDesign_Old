@@ -1,0 +1,19 @@
+{{#with tags}}
+  {{#if hasNoTags}}
+
+  {{/if}}
+{{/with}}
+{{#if isEditable}}
+  {{#each tags}}
+    {{view App.TagView itemBinding="this"}}
+  {{/each}}
+  {{view App.AddTagField class="odr-add-tag-field" placeholder="Add tag..." }}
+{{else}}
+  {{#each tags}}
+    <span>
+      <i class="icon-tag"></i>
+      <a {{bindAttr href="tagUrl"}}>{{name}}</a>
+      &nbsp;
+    </span>
+  {{/each}}
+{{/if}}

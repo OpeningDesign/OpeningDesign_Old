@@ -1,0 +1,12 @@
+<%= render :partial => '/nodes/node_children_menu', :locals => { :node => document_version } %>
+
+<% button_menu :button_icon => 'chevron-right', :class => 'self' do |m| %>
+  <% unless current_page?(document_version) %>
+    <%= m.item 'Open', document_version_path(document_version), :icon => 'eye-open' %>
+  <% end %>
+  <%= m.item 'Download', download_document_version_path(document_version), :icon => 'download' %>
+  <%= collaborators_menu_item(m, document_version) %>
+  <%= m.separator %>
+  <%= m.item 'Collaborators', node_collaborators_path(document_version), :icon => 'retweet' %>
+  <div class="bottom_of_UL"></div>
+<% end %>

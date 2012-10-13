@@ -1,0 +1,15 @@
+// Place all the styles related to the Projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.occordion.plusminus {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  &.plus {
+    background: url(<%= asset_data_uri 'plus.gif' %>) no-repeat;
+  }
+  &.minus {
+    background: url(<%= asset_data_uri 'minus.gif' %>) no-repeat;
+  }
+}

@@ -1,0 +1,4 @@
+<%= link_to project.display_name, project_url(project) %>
+<% unless project.is_open_source %>
+  <i class="icon-lock"></i>
+<% end %>

@@ -1,0 +1,18 @@
+<% button_menu :button_icon => 'chevron-down', :class => 'children' do |m| %>
+  <%= m.item t("node.newsubproject", :default => "New #{t('sub_project')}"), new_node_project_path(node), :icon => 'folder-open' %>
+  <%= m.item t('node.newsketchspace', :default => 'New Sketchspace'), new_node_sketchspace_path(node), :icon => 'comment' %>
+  <li>
+    <a class="upload_from_menu<%= node.to_param %>" href="#">
+      <%= form_for node, :url => upload_node_url(node), :method => :post do |f| %>
+        <i class="icon-file"></i>
+        <span class="styled-upload-menu-item">
+          <span class="fake">
+            <button>New document(s)...</button>
+          </span>
+          <input class="hidden-upload-input" id="upload" multiple="multiple" name="document_version[content][]" type="file">
+        </span>
+      <% end %>
+    </a>
+  </li>
+    <div class = "bottom_of_UL"></div>
+<% end %>

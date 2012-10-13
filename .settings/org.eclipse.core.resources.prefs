@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//.settings/org.eclipse.core.resources.prefs=UTF-8
+encoding//app/helpers/application_helper.rb=UTF-8
+encoding//app/views/devise/registrations/edit.html.erb=UTF-8
+encoding//app/views/devise/shared/_links.erb=UTF-8
+encoding//app/views/landing/index.html.erb=UTF-8
+encoding//app/views/layouts/application.html.erb=UTF-8
+encoding//app/views/nodes/_node.html.erb=UTF-8
+encoding//app/views/pages/who.html.erb=UTF-8
+encoding//app/views/projects/_form.html.erb=UTF-8
+encoding//app/views/projects/new.html.erb=UTF-8
+encoding//vendor/assets/stylesheets/bootstrap.css=UTF-8
+encoding/Gemfile.lock=UTF-8

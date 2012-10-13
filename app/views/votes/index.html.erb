@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="span4 corner_gradient">
+
+    <h1>
+      Votes for <%= link_to @node.display_name, @node %>.
+    </h1>
+
+    <% unless @user_vote.voted %>
+      <p>You haven't voted yet.</p>
+    <% end %>
+
+    <%= simple_form_for @user_vote, :url => node_vote_path(@node.to_param, @user_vote.to_param) do |f| %>
+      <%= f.input :vote, :label => "Your vote 0...360" %>
+      <%= f.button :submit, "Vote", :class => 'btn' %>
+    <% end %>
+
+    <%= simple_form_for @user_vote, :url => node_vote_path(@node, @user_vote), :method => 'delete' do |f| %>
+      <%= f.button :submit, "Remove my vote", :class => 'btn' %>
+    <% end %>
+  </div>
+</div>

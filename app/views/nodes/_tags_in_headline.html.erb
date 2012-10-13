@@ -1,0 +1,9 @@
+<%# TODO: needed? %>
+<% if node.tag_list.count > 0 %>
+  <span class="tags_in_headline">
+    Tagged:
+    <% node.tag_list.each do |tag| %>
+      <%= link_to tag, tag_path(:id => CGI.escape(tag)) %>
+    <% end %>
+  </span>
+<% end %>

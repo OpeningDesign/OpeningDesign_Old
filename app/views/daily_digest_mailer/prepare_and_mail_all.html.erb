@@ -1,0 +1,9 @@
+<p>Dear <%= @user.display_name %>,</p>
+<p>the following activities occured recently on OpeningDesign:</p>
+  <% @activities.each do |activity| %>
+    <p>
+      <%= render activity %>
+    </p>
+  <% end %>
+
+<%= render :partial => '/mailer_footer' %>

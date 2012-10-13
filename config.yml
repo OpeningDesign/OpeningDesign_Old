@@ -1,0 +1,103 @@
+##
+# Configuration settings for use by the Rails application
+# Made available via the SimpleConfig global class
+# Use for settings such as mail server configurations, Amazon keys and secrets etc...
+# You can use ERB too
+#
+
+##
+# Define shared settings
+#
+shared: &shared
+
+  # application settings
+  title: OpeningDesign
+  description:
+  keywords:
+  version: 1.0 BETA
+
+  # url settings
+  scheme: http
+  domain: openingdesign.com
+  sketchspace_base_url: "http://ss.openingdesign.com"
+
+  # mail settings
+  smtp_domain: odr-testing.r8fe.net
+  smtp_server: smtp.sendgrid.net
+  smtp_port: 587
+  smtp_user_name: <%= ENV['SENDGRID_USER'] %>
+  smtp_password: <%= ENV['SENDGRID_PASSWORD'] %>
+  smtp_enable_starttls_auto: true
+
+  # email addresses
+  info_email: info@openingdesign.com
+  no_reply_email: noreply@openingdesign.com
+  support_email: support@openingdesign.com
+
+  # omniauth (TODO: probably unused)
+  omniauth_auth: <%= ENV['omniauth.auth'] %>
+
+  # paperclip
+  paperclip_path: ":rails_root/public/system/:attachment/:id/:style/:filename"
+
+  # view settings
+  name_field_size: 52
+
+  # storage limit (200MB)
+  storage_limit: 209715200
+
+  # facebook
+  facebook_app_id: <%= ENV['FACEBOOK_APP_ID'] %>
+  facebook_secret_key: <%= ENV['FACEBOOK_SECRET_KEY'] %>
+
+  # Amazon S3
+  s3_access_key_id: <%= ENV['S3_ACCESS_KEY'] %>
+  s3_secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
+  s3_bucket: od_rails_development
+
+##
+# Define settings per Rails environment,
+# provide overrides to the shared settings as needed
+#
+development:
+  # inherit shared settings
+  <<: *shared
+
+  # url settings
+  domain: dev
+  subdomain: odr
+
+  # mail setting (for mailcatcher)
+  smtp_server: localhost
+  smtp_port: 1025
+
+test:
+  # inherit shared settings
+  <<: *shared
+
+  # url settings
+  domain: host
+  subdomain: test
+
+  # mailer settings
+  smtp_delivery_method: :test
+
+  # paperclip
+  paperclip_path: "/tmp/odr/test/public/system/:attachment/:id/:style/:filename"
+
+staging:
+  # inherit shared settings
+  <<: *shared
+
+  # url settings
+  subdomain: staging
+
+production:
+  # inherit shared settings
+  <<: *shared
+
+  # url settings
+  subdomain: staging
+
+  # Amazon S3
+  s3_bucket: od_rails_production

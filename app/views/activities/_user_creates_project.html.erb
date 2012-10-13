@@ -1,0 +1,12 @@
+<%= subject_of_activity(social_activity) %>
+created
+<% if social_activity.target %>
+  <%= render social_activity.target %>
+  <% if social_activity.target.parent %>
+    in
+    <%= render social_activity.target.root %>
+  <% end %>
+  (<%= time_ago_in_words social_activity.created_at %> ago)
+<% else %>
+  ??
+<% end %>

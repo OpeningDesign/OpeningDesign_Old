@@ -1,0 +1,105 @@
+<h1>My profile<%= image_tag @user.profile_pic_url %></h1>
+
+<% if @user.gravatar_pic? %>
+  <p>Change your profile picture <a href="http://www.gravatar.com">at Gravatar.com</a>.</p>
+<% end %>
+<p>Check how others <%= link_to 'see you', @user %>.</p>
+
+<div class="row">
+  <div class="span7 corner_gradient">
+    <h2><%= t '.activities.header', :default => "Latest activities" %></h2>
+
+    <% if @has_activities %>
+      <table class="table">
+        <tbody>
+          <% @activities.each do |activity| %>
+            <tr>
+              <td>
+                  <%= render activity %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% if @has_more_activities %>
+        <p><%= link_to "More...", profile_show_path(:show_all_activities => true) %></p>
+      <% end %>
+    <% else %>
+      <p>
+        <%= t '.activities.none', :default => "No activities yet. Maybe subscribe to some people, projects or tags?" %>
+      </p>
+    <% end %>
+
+  </div>
+  <div class="span4">
+    <div class="corner_gradient">
+    <h2>My tags</h2>
+    <p>
+      <% if @my_tags.count > 0 %>
+        <% @my_tags.each do |tag| %>
+          <%= link_to tag.name, tag_path(:id => tag.name) %>
+          &nbsp;
+        <% end %>
+      <% else %>
+        <%= t '.no_tags', :default => 'You are not subscribed to any tags.' %>
+      <% end %>
+    </p>
+    </div>
+    <div class="corner_gradient">
+    <h2><%= t '.node_subscriptions', :default => "My node subscriptions" %></h2>
+    <p>
+      <% if @my_subscribed_nodes.count > 0 %>
+
+        <table class="table">
+          <% @my_subscribed_nodes.each do |n| %>
+            <tr>
+              <td>
+                <%= render :partial => '/nodes/node_in_list', :object => n %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+
+      <% else %>
+        <%= t '.no_node_subscriptions', :default => "You have no node subscriptions yet." %>
+      <% end %>
+    </p>
+    </div>
+    <% if @my_votes.count %>
+      <div class="corner_gradient">
+        <h2><%= t '.votes', :default => "Nodes I voted on" %></h2>
+        <p>
+          <table class="table">
+            <% @my_votes.each do |v| %>
+              <tr>
+                <td>
+                  <%= render :partial => '/nodes/node_in_list', :object => v.node %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </p>
+      </div>
+    <% end %>
+    <div class="corner_gradient">
+    <h2><%= t '.user_subscriptions', :default => "My user subscriptions" %></h2>
+    <p>
+      <% if @my_subscribed_users.count > 0 %>
+
+        <table class="table">
+          <% @my_subscribed_users.each do |user| %>
+            <tr>
+              <td>
+                <%= render user %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+
+      <% else %>
+        <%= t '.no_user_subscriptions', :default => "You have no user subscriptions yet." %>
+      <% end %>
+    </p>
+    </div>
+  </div>
+</div>

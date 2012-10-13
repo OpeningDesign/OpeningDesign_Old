@@ -1,0 +1,79 @@
+  <div class = "span7 corner_gradient">
+<h1>Collaborators on <%= link_to @node.display_name, @node %></h1>
+
+<% if @node.permitted_to_add_collaborators?(current_user) %>
+
+
+  <% unless @ambiguous %>
+    <p><%= t '.add_blurb', :default => 'Add collaborators to %{node_name}:', :node_name => @node.display_name %></p>
+    <%= render :partial => 'invite_form' %>
+  <% end %>
+<% elsif current_user %>
+  <h2>Become a collaborator</h2>
+  <p><%= t '.request_invite_blurb', :default => 'You can request an invite to become a collaborator from the owner:' %></p>
+  <%= render :partial => 'request_form' %>
+<% else %> <%# not logged in %>
+  <p><%= t '.not_logged_in', :default => 'If you were signed in, you could become a collaborator' %></p>
+<% end %>
+
+<% if @ambiguous %>
+  <div class="row">
+    <div class="span6">
+    <p><%= t '.ambiguous', :default => "'%{name}' is ambiguous. Which of the following do you want to add?", :name => @collaborator_to_add.name_or_email %></p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users_by_name.each do |u| %>
+            <tr>
+              <td><%= link_to_user(u) %></td>
+              <td>
+                <%= link_to_with_icon "Add as collaborator", node_collaborators_path(@node, :user_id => u.to_param), :method => :post, :class => "btn btn-primary", :user_id => u.to_param, :icon => 'plus' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<div class="row clear_both">
+  <div class="corner_gradient span6">
+    <h2>Current collaborators</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @collaborators.each do |collaborator| %>
+          <tr>
+            <td>
+              <%= link_to_user collaborator.user %>
+            </td>
+            <td>
+              <%= link_to_with_icon I18n.t('.delete', :default => 'Delete'),
+                node_collaborator_path(@node, collaborator),
+                :class => 'btn btn-primary', :confirm => 'Are you sure?', :method => :delete, :icon => "trash" %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @collaborators.count == 0 %>
+          <tr><td colspan="2">No collaborators.</td></tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<br />
+

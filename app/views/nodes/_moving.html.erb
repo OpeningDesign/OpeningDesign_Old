@@ -1,0 +1,8 @@
+<% if moving_node? %>
+  <div class="alert">
+    <button class="close" data-dismiss="alert">×</button>
+      <p>Moving <%= link_to moving_node.display_name, moving_node %>
+        <%= link_to "Cancel", node_cancelmove_path(moving_node), :method => :post, :class => 'btn btn-primary' %>
+      </p>
+  </div>
+<% end %>

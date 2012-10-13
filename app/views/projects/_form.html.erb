@@ -1,0 +1,16 @@
+<%= simple_form_for(@project) do |f| %>
+  <%= f.hidden_field :parent_id %>
+  <%= f.input :name,
+    :placeholder => t('.message.name', :default => ' '),
+    :input_html => { :class => '' } %>
+  <%= f.input :description, :as => :text,
+    :placeholder => t('.message.description', :default => ' '),
+    :input_html => { :class => '', :rows => 5 } %>
+  <% if @show_open_vs_closed_choice %>
+    <%= f.input :explicitly_open_sourced, :as => :radio_buttons,
+      :label => t('.label.opensource', :default => "OpenSpace"),
+      :hint => t('.hint.opensource', :left => @number_closed_left,
+                 :default => "Please note that content within OpenSpaces is licensed 'copyleft' and open to the world. ClosedSpaces require a subscription.  You have have %{left} ClosedSpaces left.") %>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,39 @@
+<h1><%= t('.heading', :default => 'Your subscription plan') %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Tier</td>
+      <td>Max # closed spaces</td>
+      <td>Available document storage</td>
+      <td>Max # collaborators on closed spaces</td>
+      <td>Monthly fee</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subscriptions.each do |plan| %>
+      <tr>
+        <td><%= plan.title || plan.name %></td>
+        <td><%= plan.max_number_closed_source_nodes %></td>
+        <td><%= plan.max_document_space || "TODO: define in admin panel" %></td>
+        <td><%= plan.max_number_collaborators %></td>
+        <td><%= plan.monthly_cost || "TODO: define in admin panel" %></td>
+        <td>
+          <% if @current == plan %>
+            <% if plan.name != 'default' %>
+              <%= link_to t(".cancel", :default => "Cancel subscription"),
+                subscription_cancel_path(), :method => :post, :class => 'btn btn-danger' %>
+            <% end %>
+          <% elsif plan.larger_than? @current %>
+            <%= link_to t(".upgrade", :default => "Upgrade"),
+              subscription_upgrade_path(:plan => plan.name),
+              :method => :post,
+              :class => 'btn btn-primary' %>
+          <% else %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

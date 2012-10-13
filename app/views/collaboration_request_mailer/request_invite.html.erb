@@ -1,0 +1,15 @@
+<p>Dear <%= @owner.name %>,</p>
+
+<p><%= @name %> would like to become a collaborator on your project!
+  If you want to make <%= @name %> a collaborator, go to
+  <%= link_to @node.name, node_collaborators_url(@node, :collaborator_to_add => { :name_or_email => @name }) %>
+  at your convenience and add him/her.</p>
+
+<p>If you don't want to add <%= @name %> as collaborator, please ignore this email.</p>
+
+<% if @message %>
+  <p><%= @name %> sends you the following personal message:</p>
+  <blockquote><%= @message %></blockquote>
+<% end %>
+
+<%= render :partial => '/mailer_footer' %>

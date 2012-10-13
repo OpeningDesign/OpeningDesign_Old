@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>OpeningDesign</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<% if Odr::Application.config.layout_with_bootstrap_compiler %>
+		<link rel="stylesheet/less" href="/bootstrap-less/bootstrap.less">
+		<script src="http://lesscss.googlecode.com/files/less-1.3.0.min.js"></script>
+		<% end %>
+		<%= stylesheet_link_tag "application" %>
+		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<%= javascript_include_tag "application" %>
+		<%= javascript_include_tag "templates/all" %>
+		<% unless @skip_redirect_for_unsupported %>
+		<!--[if lt IE 9]>
+		<meta http-equiv="Refresh" content="0;url=/unsupported" />
+		<![endif]-->
+		<% end %>
+		<%= csrf_meta_tags %>
+
+		<%= render '/google-analytics' %>
+	</head>
+
+	<body>
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="navbar_left"></div>
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+					<a class="brand" href="/"></a>
+
+					<div class="btn-group pull-right">
+						<% if user_signed_in? %>
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i> <%= current_user.name %> <span class="caret"></span> </a>
+						<ul class="dropdown-menu">
+							<li>
+								<%= link_to 'My profile', profile_show_path %>
+							</li>
+							<li>
+								<%= link_to 'Account settings', edit_user_registration_path %>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<%= link_to 'Log out', destroy_user_session_path, method: 'delete' %>
+							</li>
+							<div class = "bottom_of_UL"></div>
+						</ul>
+						<% else # user not signed in %>
+						<%= link_to new_user_registration_path, :class => 'btn' do %>
+						<i class="icon-plus"></i>
+						Sign up
+						<% end %>
+						<%= link_to new_user_session_path, :class => 'btn' do %>
+						<i class="icon-user"></i>
+						Sign in
+						<% end %>
+						<button class="btn dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+								<%= link_to "With Facebook", user_omniauth_authorize_path(:facebook) %>
+							</li>
+							<li>
+								<%= link_to "With LinkedIn", user_omniauth_authorize_path(:linkedin) %>
+							</li>
+							<li>
+								<%= link_to "With Twitter", user_omniauth_authorize_path(:twitter) %>
+							</li>
+							<div class = "bottom_of_UL"></div>
+						</ul>
+						<% end %>
+					</div>
+
+					<div class="pull-right">
+						<ul class="nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t 'sanctioned_projects', :default => 'StickySpaces' %> <b class="caret"></b> </a>
+								<ul class="dropdown-menu">
+									<li>
+										<%= link_to "° BIM/CAD Objects", "/projects/862" %>
+									</li>
+									<li>
+										<%= link_to "° Standards/Guidelines", "/projects/1503" %>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<%= link_to "° Design Feedback", "/projects/870" %>
+									</li>
+									<li>
+										<%= link_to "° Constructability Feedback", "/projects/869" %>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<%= link_to "° The openAEC 'Space'", "/projects/651" %>
+									</li>
+									<li>
+										<%= link_to "° Info about The openAEC", "/open_aec/home.html" %>
+									</li>
+
+									<div class = "bottom_of_UL"></div>
+								</ul>
+						</ul>
+					</div>
+
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li class="<%= current_page?(new_project_path) ? 'active' : '' %>">
+								<%= link_to 'Create a Space', new_project_path %>
+							</li>
+							<li class="<%= current_page?(projects_path) ? 'active' : '' %>">
+								<%= link_to 'All Spaces', projects_path %>
+							</li>
+							<% if user_signed_in? && current_user.operator? %>
+							<li>
+								<%= link_to "Admin", rails_admin_path %>
+							</li>
+							<% end %>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+				<div class="navbar_right"></div>
+			</div>
+		</div>
+
+		<div class="load-indicator" style="display: none;">
+			Loading...
+		</div>
+
+		<% unless notice.blank? %>
+		<div class="notice gritter" style="display: none;">
+			<%= notice %>
+		</div>
+		<% end %>
+		<% unless alert.blank? %>
+		<div class="alert gritter" style="display: none;">
+			<%= alert %>
+		</div>
+		<% end %>
+
+		<div class="container">
+			<%= render :partial => '/nodes/uploadstatus' %>
+			<%= render :partial => '/nodes/moving' %>
+			<%= render :partial => '/betawarning' %>
+			<div class="row">
+				<% if @display_maintenance_alert %>
+				<div class="span12 alert" style="margin-top: 25px;">
+					<h1 style="text-align: left; top: 0px;">Please Note: Maintenance</h1>
+					<p>
+						We are doing some maintenance at the moment.  Apologies for any inconvenience caused... shouldn't be long :)
+					</p>
+				</div>
+				<% end %>
+
+				<div class="span12">
+					<%= yield %>
+				</div>
+			</div>
+		</div>
+		<div class = "footer_wrapper1">
+			<div class = "footer_wrapper2">
+				<div class = "footer_left"></div>
+				<ul>
+					<li>
+						<%= link_to "° ABOUT", page_path("about") %>
+					</li>
+					<li>
+						<%= link_to "° WHO", page_path("who") %>
+					</li>
+					<li>
+						<a href="http://blog.openingdesign.com/">° BLOG</a>
+					</li>
+					<li>
+						<%= link_to "° VIDEO", page_path("video") %>
+					</li>
+				</ul>
+				<div class = "footer_right"></div>
+			</div>
+		</div>
+		<div class="ajax-edit" style="display: none;"></div>
+
+		<script type="text/javascript">
+			var uvOptions = {};
+			(function() {
+				var uv = document.createElement('script');
+				uv.type = 'text/javascript';
+				uv.async = true;
+				uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/ZE1Z0qGJ6pPV2tTPyMfYCQ.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(uv, s);
+			})();
+		</script>
+                <script>
+                        setTimeout(function() { /* TODO: bad trick: input field not rendered yet, probably? */
+                          $('.odr-add-tag-field').typeahead({source: <%= sanctioned_tags().to_json.html_safe %>, items: 200 });
+                        }, 2000);
+                </script>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="breadcrumb_wrapper">
+    <div class="breadcrumb_wrapper2">
+      <ul class="breadcrumb">
+        <% node.path_from_root.each do |n| %>
+          <li>
+            <% unless node.is_open_source %>
+              <i class="icon-lock"></i>
+            <% end %>
+            <i class="icon-<%= n.icon_name %>"></i>
+            <%= link_to_unless_current n.name, n %>
+          </li>
+        <% end %>
+      </ul>
+      <div class = "breadcrumb_right"></div>
+    </div>
+  </div>
+</div>

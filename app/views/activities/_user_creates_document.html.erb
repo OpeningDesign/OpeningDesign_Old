@@ -1,0 +1,7 @@
+<%= subject_of_activity(social_activity) %>
+created
+<%= render social_activity.target rescue "??" %>
+in
+<%= render social_activity.target.parent rescue "??" %>
+(<%= time_ago_in_words social_activity.created_at %> ago)
+
