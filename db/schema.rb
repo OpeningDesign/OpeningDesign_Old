@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906150509) do
+ActiveRecord::Schema.define(:version => 20121017144402) do
 
   create_table "activities", :force => true do |t|
   end
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(:version => 20120906150509) do
     t.datetime "updated_at",  :null => false
     t.integer  "owner_id"
   end
+
+  add_index "projects", ["owner_id"], :name => "index_projects_on_owner_id"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
