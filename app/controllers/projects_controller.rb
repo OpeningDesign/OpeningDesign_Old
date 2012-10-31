@@ -4,6 +4,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   # GET /projects.json
+  caches_action :index, :show
+
   def index
     @projects = Project.all
 
@@ -33,6 +35,7 @@ class ProjectsController < ApplicationController
     @number_closed_left = current_user ? current_user.number_closed_nodes_left : 0
     @show_open_vs_closed_choice = @project.parent.nil? # only show for root projects
 
+    expire_action :action => :index
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
@@ -43,6 +46,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+
     respond_to do |format|
       format.html
       format.js
@@ -52,6 +56,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    expire_action :action => :index
     respond_to do |format|
       @project =  Project.create_by_user(current_user, params[:project], params[:node_id])
       if @project.persisted?
@@ -72,6 +77,9 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
 
+    expire_action :action => :index
+    expire_action :action => :show, :id => @project
+
     respond_to do |format|
       if @project.update_by_user(current_user, params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -88,8 +96,11 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    expire_action :action => :index
     @project = Project.find(params[:id])
     raise NotAuthorizedException.new() unless @project.writable_by? current_user
+
+    expire_action :action => :show, :id => @project
     @project.destroy
 
     respond_to do |format|
