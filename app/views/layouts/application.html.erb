@@ -5,25 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
-
-		<% if Odr::Application.config.layout_with_bootstrap_compiler %>
-		<link rel="stylesheet/less" href="/bootstrap-less/bootstrap.less">
-		<script src="http://lesscss.googlecode.com/files/less-1.3.0.min.js"></script>
-		<% end %>
-		<%= stylesheet_link_tag "application" %>
-		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-		<%= javascript_include_tag "application" %>
-		<%= javascript_include_tag "templates/all" %>
-		<% unless @skip_redirect_for_unsupported %>
-		<!--[if lt IE 9]>
-		<meta http-equiv="Refresh" content="0;url=/unsupported" />
-		<![endif]-->
-		<% end %>
 		<%= csrf_meta_tags %>
-
-		<%= render '/google-analytics' %>
 	</head>
-
 	<body>
 
 		<div class="navbar navbar-fixed-top">
@@ -200,4 +183,19 @@
                         }, 2000);
                 </script>
 	</body>
+
+	<% if Odr::Application.config.layout_with_bootstrap_compiler %>
+			<link rel="stylesheet/less" href="/bootstrap-less/bootstrap.less">
+			<script src="http://lesscss.googlecode.com/files/less-1.3.0.min.js"></script>
+	<% end %>
+	<%= stylesheet_link_tag "application" %>
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "templates/all" %>
+	<% unless @skip_redirect_for_unsupported %>
+		<!--[if lt IE 9]>
+		<meta http-equiv="Refresh" content="0;url=/unsupported" />
+		<![endif]-->
+	<% end %>
+	<%= render '/google-analytics' %>
 </html>
