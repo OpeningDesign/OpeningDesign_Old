@@ -4,6 +4,7 @@ log/*.log
 tmp/
 .sass-cache/
 *.swp
+*.swo
 coverage
 coverage.data
 public/system
