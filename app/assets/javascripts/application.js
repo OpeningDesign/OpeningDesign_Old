@@ -6,4 +6,10 @@
 //
 // hemantv : Only the absolute required javascript should be here to optimize run times
 //= require jquery
-//= require jquery_ujs
+//= require ember
+//= require jquery-ui-1.8.16.custom.min
+//= require app/app
+//= require app/upload
+//= require jquery.best_in_place
+//= require jquery.tooltip
+//= require jquery.fileupload

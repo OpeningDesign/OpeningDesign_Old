@@ -166,27 +166,7 @@
 			</div>
 		</div>
 		<div class="ajax-edit" style="display: none;"></div>
-
-		<script type="text/javascript">
-			var uvOptions = {};
-			(function() {
-				var uv = document.createElement('script');
-				uv.type = 'text/javascript';
-				uv.async = true;
-				uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/ZE1Z0qGJ6pPV2tTPyMfYCQ.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(uv, s);
-			})();
-		</script>
-                <script>
-                        setTimeout(function() { /* TODO: bad trick: input field not rendered yet, probably? */
-                          $('.odr-add-tag-field').typeahead({source: <%= sanctioned_tags().to_json.html_safe %>, items: 200 });
-                        }, 2000);
-                </script>
 	</body>
-	<%= javascript_include_tag "application_others" %>
-	<%= javascript_include_tag "templates/all" %>
-	<%= stylesheet_link_tag "application" %>
 	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 	<% unless @skip_redirect_for_unsupported %>
 		<!--[if lt IE 9]>
@@ -198,4 +178,23 @@
 			<script src="http://lesscss.googlecode.com/files/less-1.3.0.min.js"></script>
 	<% end %>
 	<%= render '/google-analytics' %>
+	<%= javascript_include_tag "application_others" %>
+	<%= javascript_include_tag "templates/all" %>
+	<%= stylesheet_link_tag "application" %>
+	<script type="text/javascript">
+		var uvOptions = {};
+		(function() {
+			var uv = document.createElement('script');
+			uv.type = 'text/javascript';
+			uv.async = true;
+			uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/ZE1Z0qGJ6pPV2tTPyMfYCQ.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(uv, s);
+		})();
+
+        setTimeout(function() { /* TODO: bad trick: input field not rendered yet, probably? */
+          $('.odr-add-tag-field').typeahead({source: <%= sanctioned_tags().to_json.html_safe %>, items: 200 });
+        }, 2000);
+    </script>
+
 </html>
