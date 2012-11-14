@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   # GET /projects.json
-  caches_action :index, :show
+  #caches_action :index, :show
 
   def index
     @projects = Project.all
@@ -58,8 +58,8 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       @project =  Project.create_by_user(current_user, params[:project], params[:node_id])
       if @project.persisted?
-        expire_action :action => :index
-        expire_parents params[:node_id]
+        #expire_action :action => :index
+        #expire_parents params[:node_id]
         format.html { redirect_to @project, notice: "#{@project.parent ? t("sub_project") : t("project")} was successfully created." }
         format.json { render json: @project, status: :created, location: @project }
         format.js
@@ -79,8 +79,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_by_user(current_user, params[:project])
-        expire_action :action => :index
-        expire_parents params[:id]
+        #expire_action :action => :index
+        #expire_parents params[:id]
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :ok }
         format.js { flash[:notice] = "Project was successfully updated." }
@@ -99,8 +99,8 @@ class ProjectsController < ApplicationController
     raise NotAuthorizedException.new() unless @project.writable_by? current_user
     @project.destroy
 
-    expire_action :action => :index
-    expire_parents params[:id]
+    #expire_action :action => :index
+    #expire_parents params[:id]
 
     respond_to do |format|
       format.html { redirect_to projects_url }
@@ -115,15 +115,15 @@ class ProjectsController < ApplicationController
   end
 
 private
-  def expire_parents ( project_id )
-    current_id = project_id
-    puts "Experiing #{current_id}"
-    while !( Project.find_by_id(current_id).nil? )
-      project = Project.find_by_id( current_id )
-      expire_action(:controller => 'projects', :action => 'show', :id => project.id)
-      current_id = project.parent_id
-      puts "Experiing #{current_id}"
-    end
-  end
+  # def expire_parents ( project_id )
+  #   current_id = project_id
+  #   puts "Experiing #{current_id}"
+  #   while !( Project.find_by_id(current_id).nil? )
+  #     project = Project.find_by_id( current_id )
+  #     expire_action(:controller => 'projects', :action => 'show', :id => project.id)
+  #     current_id = project.parent_id
+  #     puts "Experiing #{current_id}"
+  #   end
+  # end
 
 end
