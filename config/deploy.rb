@@ -2,13 +2,12 @@ require "bundler/capistrano"
 require "rvm/capistrano"
 
 set :application, "OpeningDesign"
-set :repository, "git@github.com:Chris927/OpeningDesign_Rails.git"
+set :repository, "git@github.com:OpeningDesign/OpeningDesign.git"
 
 set :user, 'odr'
 set :runner, 'odr'
 set :use_sudo, false
 set :scm, :git
-set :scm_username, "christian.oloff+github@googlemail.com"
 set :branch, "master"
 set :git_shallow_clone, 1
 set :deploy_to, "/home/odr/deploy"
