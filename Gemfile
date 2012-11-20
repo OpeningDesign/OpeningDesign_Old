@@ -15,7 +15,7 @@ group :test, :development do
 end
 group :staging, :production do
   gem 'pg'
-  #gem 'therubyracer'
+  gem 'therubyracer'
   gem 'sendgrid'
 end
 
