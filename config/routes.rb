@@ -8,6 +8,7 @@ Odr::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  match '/nodes/show_children_deferred' => 'nodes#show_children_deferred'
   resources :nodes do
     member do
       post 'upload'

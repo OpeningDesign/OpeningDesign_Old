@@ -1,0 +1,3 @@
+$("#deferred_children_of_<%= @node.to_param %>")
+.html("<%= escape_javascript(render(:partial => '/nodes/node_children', :locals => { :node => @node, :root => @root })).html_safe %>");
+setupNodeHoveringStuff();

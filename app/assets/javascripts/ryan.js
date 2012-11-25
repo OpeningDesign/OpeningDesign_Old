@@ -18,12 +18,8 @@ var hoverOutSpeed = "500";
 
 // Start JQuery
 
-$(document).ready(function() {
-
-
-
+function setupNodeHoveringStuff() {
 	$(node_container).hover(function() {
-
 		var node_menu_ttc = $(this).find('.node_menus');
 		var this_node_background = $(this).find('.node_background,');
 
@@ -68,8 +64,11 @@ $(document).ready(function() {
 			node_menu_ttc.css("display", "none");
 		});
 		//node_menu (fade out and hide)
-
 	});
+}
 
+$(document).ready(function() {
+  setupNodeHoveringStuff();
 });
+
 //end

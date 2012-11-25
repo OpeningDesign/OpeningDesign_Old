@@ -21,6 +21,11 @@ class NodesController < ApplicationController
     redirect_to Node.find(params[:id])
   end
 
+  def show_children_deferred
+    @node = Node.find(params[:node])
+    @root = Node.find(params[:root])
+  end
+
   def update
     @node = Node.find(params[:id])
     @node.collapse_by_user(current_user, params[:collapsed])

@@ -1,0 +1,23 @@
+      <% unless node.children_versions.empty? %> <%# render versions %>
+        <div class="node_container versions">
+          <div class="odnode span12">
+            <% (0..node.indentation_level_in_node_list).each do %>
+              <i class="icon-empty"></i>
+            <% end %>
+            <a id="toggleVersionsOf<%= node.to_param %>" class="btn btn-mini" data-toggle="collapse" data-target="#versions_of_<%= node.to_param %>">
+              <i class="icon-plus"></i>
+            </a>
+            VERSIONS...
+          </div>
+          <div class="node_background"></div>
+        </div>
+        <div id="versions_of_<%= node.to_param %>" class="collapse collapsibleVersions">
+          <% node.children_versions.each do |version| %>
+            <%= render :partial => '/nodes/node', :locals => { :node => version, :root => root } %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% node.children_without_versions.each do |child| %>
+        <%= render :partial => '/nodes/node', :locals => { :node => child, :root => root } %>
+      <% end %>
