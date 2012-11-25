@@ -18,8 +18,14 @@ var hoverOutSpeed = "500";
 
 // Start JQuery
 
-function setupNodeHoveringStuff() {
-	$(node_container).hover(function() {
+function setupNodeHoveringStuff(containers) {
+  if (containers) {
+    console.log("should use containers: " + containers);
+  } else {
+    console.log("should use default containers");
+    containers = $(node_container);
+  }
+	containers.hover(function() {
 		var node_menu_ttc = $(this).find('.node_menus');
 		var this_node_background = $(this).find('.node_background,');
 
