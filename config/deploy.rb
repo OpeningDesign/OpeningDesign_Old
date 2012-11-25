@@ -8,7 +8,7 @@ set :user, 'odr'
 set :runner, 'odr'
 set :use_sudo, false
 set :scm, :git
-set :branch, "master"
+set :branch, "deferred_loading_projects_view"
 set :git_shallow_clone, 1
 set :deploy_to, "/home/odr/deploy"
 
