@@ -50,20 +50,27 @@
             Loading...
           </div>
         </div>
+        <%# TODO: a bit weird that the following works not just for projects,
+          even though we use /projects/show_children_deferred as the route...
+          probably because declarative_authorization deals with model
+          inheritance in a funny way? (It does *not* work to simply use the
+                                       nodes_controller)%>
         <script>
           $(function() {
             setTimeout(function() {
               $.ajax({
-                url: "/nodes/show_children_deferred",
+                url: "/projects/show_children_deferred",
                 type: 'GET',
-                data: { node: <%= node.to_param %>,
+                data: { project_id: <%= node.to_param %>,
+                        node_id: <%= node.to_param %>,
+                        node: <%= node.to_param %>,
                         root: <%= root.to_param %>
                       },
                 success: function() { }
               }).fail(function() {
                 console.log("loading node children deferred failed");
               });
-            }, 3000);
+            }, 2000);
           });
         </script>
       <% else %>

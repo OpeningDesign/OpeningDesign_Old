@@ -36,6 +36,7 @@ Odr::Application.routes.draw do
       get 'download'
     end
   end
+  match '/projects/show_children_deferred' => 'projects#show_children_deferred'
   resources :projects do
     get 'download'
   end

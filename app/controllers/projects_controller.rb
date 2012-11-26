@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  filter_resource_access
+  filter_access_to :all
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :destroy]
 
   # GET /projects
@@ -23,6 +23,10 @@ class ProjectsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @project }
     end
+  end
+
+  def show_children_deferred
+    render_deferred_children_of(params[:node], params[:root])
   end
 
   # GET /projects/new

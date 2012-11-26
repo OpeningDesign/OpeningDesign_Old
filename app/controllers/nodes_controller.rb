@@ -1,5 +1,5 @@
 class NodesController < ApplicationController
-
+  filter_access_to :all
   before_filter :authenticate_user!
 
   def upload

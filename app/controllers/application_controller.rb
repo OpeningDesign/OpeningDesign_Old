@@ -45,4 +45,10 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "Sorry, you are not authorized to access that page."
     redirect_to root_url
   end
+
+  def render_deferred_children_of(node_id, root_id)
+    @node = Node.find(node_id)
+    @root = Node.find(root_id)
+    render 'nodes/show_children_deferred'
+  end
 end
