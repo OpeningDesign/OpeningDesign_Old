@@ -16,6 +16,8 @@ shared: &shared
   keywords:
   version: 1.0 BETA
 
+  tmpdir: '/tmp'
+
   # url settings
   scheme: http
   domain: openingdesign.com
@@ -101,3 +103,5 @@ production:
 
   # Amazon S3
   s3_bucket: od_rails_production
+
+  tmpdir: "/mnt/tmp"
