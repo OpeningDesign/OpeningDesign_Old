@@ -43,7 +43,9 @@ class Project < Node
   end
 
   def create_temporary_zipfile
-    filename = "#{`mktemp tmp/zipped_project_XXXXXXX`}".strip + ".zip"
+    dirname = SimpleConfig.tmpdir
+    tmpname = `mktemp #{dirname}/zipped_project_XXXXXXX`
+    filename = tmpname.strip + ".zip"
     ::Zip::ZipFile.open(filename, ::Zip::ZipFile::CREATE) do |zf|
       add_content_to_zipfile_at_path(zf, '')
     end
