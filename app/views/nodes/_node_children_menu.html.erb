@@ -14,5 +14,9 @@
       <% end %>
     </a>
   </li>
-    <div class = "bottom_of_UL"></div>
+  <% if node.type == 'Project' %>
+    <%= m.separator %>
+    <%= m.item 'Bulk download', project_download_path(node), :icon => 'download' %>
+  <% end %>
+  <div class = "bottom_of_UL"></div>
 <% end %>

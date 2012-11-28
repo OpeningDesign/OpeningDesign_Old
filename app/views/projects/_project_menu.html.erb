@@ -4,8 +4,7 @@
   <% unless current_page?(project) %>
     <%= m.item 'Open', project_path(project), :icon => 'eye-open' %>
   <% end %>
-  <%= m.item 'Bulk download', project_download_path(project), :icon => 'download' %>
-  <%= m.separator %>
+  <%= m.separator if m.num_items > 0 %>
   <% if project.writable_by?(current_user) %>
     <%= m.item 'Edit', edit_project_path(project), :icon => 'edit' %>
     <%= m.item 'Move', node_move_path(project), :icon => 'move', :method => :post %>
