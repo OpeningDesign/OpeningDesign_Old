@@ -74,8 +74,8 @@ class NodesController < ApplicationController
     end
 
     # old and new parent may have to update node images
-    node.parent.update_column(:node_images_dirty, true) if node.parent
-    target.update_column(:node_images_dirty, true)
+    node.parent.update_attribute(:node_images_dirty, true) if node.parent
+    target.update_attribute(:node_images_dirty, true)
 
     node.parent = target
     if node.save

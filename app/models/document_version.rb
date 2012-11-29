@@ -12,11 +12,11 @@ class DocumentVersion < Node
     :whiny => false
 
   after_create do |dv|
-    surrounding_project.update_column :node_images_dirty, true
+    surrounding_project.update_attribute :node_images_dirty, true
   end
 
   before_destroy do |dv|
-    surrounding_project.update_column :node_images_dirty, true
+    surrounding_project.update_attribute :node_images_dirty, true
   end
 
   def self.compare(a, b)
