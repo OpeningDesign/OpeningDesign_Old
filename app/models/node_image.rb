@@ -11,4 +11,9 @@ class NodeImage < ActiveRecord::Base
     :s3_headers => {"Content-Disposition" => "attachment"},
     :whiny => false
   # attr_accessible :title, :body
+
+  def url
+    media.expiring_url(240, :original)
+  end
+
 end
