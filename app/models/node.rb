@@ -307,7 +307,7 @@ class Node < ActiveRecord::Base
   def add_content_to_zipfile_at_path(zipfile, path)
     children.each do |child|
       prefix = path.blank? ? "#{name}/" : "#{path}/#{name}/"
-      if child.type == 'Document'
+      if child.type == 'Document' && !child.latest_version.blank?
         fname = `mktemp #{SimpleConfig.tmpdir}/tempdocXXXXX`.strip
         child.latest_version.content.copy_to_local_file(:original, fname)
         zipfile.add("#{prefix}#{child.name}", File.new(fname))
