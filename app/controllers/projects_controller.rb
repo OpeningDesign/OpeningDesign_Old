@@ -4,6 +4,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   # GET /projects.json
+  #caches_action :index, :show
+
   def index
     @projects = Project.all
 
@@ -36,7 +38,6 @@ class ProjectsController < ApplicationController
     @project.parent = Node.find(params[:node_id]) if params[:node_id]
     @number_closed_left = current_user ? current_user.number_closed_nodes_left : 0
     @show_open_vs_closed_choice = @project.parent.nil? # only show for root projects
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
@@ -47,6 +48,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+
     respond_to do |format|
       format.html
       format.js
@@ -56,9 +58,12 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+
     respond_to do |format|
       @project =  Project.create_by_user(current_user, params[:project], params[:node_id])
       if @project.persisted?
+        #expire_action :action => :index
+        #expire_parents params[:node_id]
         format.html { redirect_to @project, notice: "#{@project.parent ? t("sub_project") : t("project")} was successfully created." }
         format.json { render json: @project, status: :created, location: @project }
         format.js
@@ -78,6 +83,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_by_user(current_user, params[:project])
+        #expire_action :action => :index
+        #expire_parents params[:id]
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :ok }
         format.js { flash[:notice] = "Project was successfully updated." }
@@ -96,6 +103,9 @@ class ProjectsController < ApplicationController
     raise NotAuthorizedException.new() unless @project.writable_by? current_user
     @project.destroy
 
+    #expire_action :action => :index
+    #expire_parents params[:id]
+
     respond_to do |format|
       format.html { redirect_to projects_url }
       format.json { head :ok }
@@ -107,5 +117,17 @@ class ProjectsController < ApplicationController
     file = @project.create_temporary_zipfile
     send_file file, :filename => "#{@project.name}.zip"
   end
+
+private
+  # def expire_parents ( project_id )
+  #   current_id = project_id
+  #   puts "Experiing #{current_id}"
+  #   while !( Project.find_by_id(current_id).nil? )
+  #     project = Project.find_by_id( current_id )
+  #     expire_action(:controller => 'projects', :action => 'show', :id => project.id)
+  #     current_id = project.parent_id
+  #     puts "Experiing #{current_id}"
+  #   end
+  # end
 
 end

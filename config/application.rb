@@ -43,6 +43,7 @@ module Odr
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.assets.initialize_on_precompile = false
     if File.exists?("#{config.root}/public/bootstrap-less")
       config.layout_with_bootstrap_compiler = true
     else

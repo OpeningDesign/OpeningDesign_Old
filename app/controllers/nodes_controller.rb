@@ -2,6 +2,8 @@ class NodesController < ApplicationController
   filter_access_to :all
   before_filter :authenticate_user!
 
+  caches_action :show
+
   def upload
     begin
       if params[:new_version_only]
@@ -28,12 +30,14 @@ class NodesController < ApplicationController
 
   def update
     @node = Node.find(params[:id])
+    expire_action :action => :show, :id => @node
     @node.collapse_by_user(current_user, params[:collapsed])
     head :ok
   end
 
   def delete_tag
     node = Node.find(params[:node_id])
+    expire_action :action => :show, :id => node
     node.tag_list.delete(params[:tag])
     node.save
     head :ok
@@ -41,31 +45,37 @@ class NodesController < ApplicationController
 
   def subscribe
     node = Node.find(params[:node_id])
+    expire_action :action => :show, :id => node
     current_user.connect_to(node)
     redirect_to node, :notice => I18n.t('.subscribed', :default => "Successfully subscribed to %{display_name}", :display_name => node.display_name)
   end
 
   def unsubscribe
     node = Node.find(params[:node_id])
+    expire_action :action => :show, :id => node
     current_user.disconnect_from(node)
     redirect_to node, :notice => I18n.t('.unsubscribed', :default => "Successfully unsubscribed from %{display_name}", :display_name => node.display_name)
   end
 
   def move
     node = Node.find(params[:node_id])
+    expire_action :action => :show, :id => node
     session[:moving_node] = node.to_param if node
     redirect_to request.referer, :notice => I18n.t('.moving', :default => "Now select where you want to move %{node_name} to.", :node_name => node.display_name)
   end
 
   def cancelmove
     node = Node.find(session[:moving_node])
+    expire_action :action => :show, :id => node
     session[:moving_node] = nil
     redirect_to request.referer, :notice => I18n.t('.cancelmoving', :default => "Moving of %{node_name} cancelled.", :node_name => node.display_name)
   end
 
   def submitmove
     node = Node.find(session[:moving_node])
+    expire_action :action => :show, :id => node
     target = Node.find(params[:node_id])
+    expire_action :action => :show, :id => target
     if node.nil? || target.nil?
       return head(:bad_request)
     end
