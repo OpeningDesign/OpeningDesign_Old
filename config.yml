@@ -45,8 +45,8 @@ shared: &shared
   # view settings
   name_field_size: 52
 
-  # storage limit (200MB)
-  storage_limit: 209715200
+  # storage limit (5GB)
+  storage_limit: 5368709120
 
   # facebook
   facebook_app_id: <%= ENV['FACEBOOK_APP_ID'] %>
