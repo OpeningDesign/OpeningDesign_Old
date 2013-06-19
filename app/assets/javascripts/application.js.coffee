@@ -59,19 +59,21 @@ jQuery ->
       data: { collapsed: isCollapsed },
       type: 'PUT'
 
-  $('.collapsibleNode').on 'hidden', ->
-    nodeId = this.id.match /\d+/
+  $('.collapsibleNode').on 'hidden', (e) ->
+    target = e.target
+    nodeId = target.id.match /\d+/
     nodeCollapsed nodeId, true
     $('#toggleChildrenOf' + nodeId + ' i').removeClass('icon-minus').addClass('icon-plus')
-    $(this).css({ opacity: '0'})
-    $(this).css({ overflow: 'hidden'})
+    $(target).css({ opacity: '0'})
+    $(target).css({ overflow: 'hidden'})
     false
-  $('.collapsibleNode').on 'shown', ->
-    nodeId = this.id.match /\d+/
+  $('.collapsibleNode').on 'shown', (e) ->
+    target = e.target
+    nodeId = target.id.match /\d+/
     nodeCollapsed nodeId, false
     $('#toggleChildrenOf' + nodeId + ' i').removeClass('icon-plus').addClass('icon-minus')
-    $(this).css({ opacity: '1'})
-    $(this).css({ overflow: 'visible'})
+    $(target).css({ opacity: '1'})
+    $(target).css({ overflow: 'visible'})
 
     false
   $('.collapsibleVersions').on 'hidden', ->
