@@ -26,4 +26,4 @@ Otherwise, run `foreman start` to start the app (via `spork`), the workers (via
 
 ## License
 
-Proprietary.
+MIT or BSD... take your pick
